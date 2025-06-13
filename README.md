@@ -2,7 +2,7 @@
 #  ASL Alphabet Interpreter  
 Recognize American Sign Language letters using deep learning!
 
-This project trains a Convolutional Neural Network (CNN) to classify hand gestures from grayscale images into 29 classes — the English alphabet (A–Z), plus `space` and `nothing`. It supports training, webcam inference, and browser deployment via TensorFlow.js.
+This project trains a Convolutional Neural Network (CNN) to classify hand gestures from grayscale images into 28 classes — the English alphabet (A–Z), plus `space` and `nothing`. It supports training and webcam inference.
 
 ---
 
