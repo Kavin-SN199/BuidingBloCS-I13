@@ -18,7 +18,7 @@ df = pd.read_csv("/content/drive/MyDrive/asl_alphabet_full.csv")
 X = df.drop("label", axis=1).values.astype("float32")
 y = df["label"].values
 
-# Encoding labels like "a" → 0, "space" → 26
+# Encoding labels like "a" → 0 and "space" → 26
 encoder = LabelEncoder()
 y_encoded = encoder.fit_transform(y)
 y_onehot = to_categorical(y_encoded)
@@ -28,7 +28,7 @@ joblib.dump(encoder, "asl_label_encoder.pkl")
 X = X.reshape(-1, 64, 64, 1)
 
 #  Split into training/testing
-X_train, X_test, y_train, y_test = train_test_split(X, y_onehot, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y_onehot, test_size=0.2, random_state=3)
 
 #  CNN Model
 model = tf.keras.Sequential([
