@@ -56,7 +56,8 @@ Hold the gesture still  ->  Prediction is per frame; stability helps confidence.
 Hand centered in camera  => Ensures the whole hand is captured.         
 
 
-
+##Slides
+Link to the slides->https://www.canva.com/design/DAGqOsR60r8/cNsrxVEgU-G7HVasuiyNpg/edit
 
 ##  Acknowledgments
 
