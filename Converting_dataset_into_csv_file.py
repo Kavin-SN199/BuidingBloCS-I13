@@ -1,55 +1,46 @@
-# 1. Mount Google Drive
+# Mount Google Drive
 from google.colab import drive
 drive.mount('/content/drive')
 
-#  2. Unzip your ASL dataset
+# Unzip ASL dataset
 import zipfile
-import os
+zipfile.ZipFile("/content/drive/MyDrive/archive.zip", 'r').extractall("/content/asl_data")
+print("Dataset unzipped.")
 
-zip_path = "/content/drive/MyDrive/archive.zip"  
-extract_dir = "/content/asl_data"
-
-with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-    zip_ref.extractall(extract_dir)
-
-print(" Unzipped dataset")
-
-#  3. Process images into CSV
+# Convert images to CSV
 import cv2
-import numpy as np
-import pandas as pd
-from tqdm.notebook import tqdm
+import os
 import csv
+from tqdm.notebook import tqdm
 
 IMG_SIZE = 64
-csv_file = "asl_alphabet_full.csv"
-header = ['label'] + [f'pixel_{i}' for i in range(IMG_SIZE * IMG_SIZE)]
+csv_path = "asl_alphabet.csv"
+data_dir = "/content/asl_data/asl_alphabet_train/asl_alphabet_train"
 
-with open(csv_file, "w", newline='') as f:
+with open(csv_path, "w", newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(header)
+    writer.writerow(['label'] + [f'pixel_{i}' for i in range(IMG_SIZE * IMG_SIZE)])
 
-    root = os.path.join(extract_dir, "asl_alphabet_train/asl_alphabet_train")  
-
-    for label in sorted(os.listdir(root)):
-        label_path = os.path.join(root, label)
-        if not os.path.isdir(label_path):
+    for label in sorted(os.listdir(data_dir)):
+        folder = os.path.join(data_dir, label)
+        if not os.path.isdir(folder):
             continue
 
-        for file in tqdm(os.listdir(label_path), desc=f"Processing {label}"):
-            if not file.lower().endswith(('.jpg', '.png', '.jpeg')):
+        for file in tqdm(os.listdir(folder), desc=label):
+            if not file.endswith(".jpg"):
                 continue
 
-            img_path = os.path.join(label_path, file)
-            img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+            img = cv2.imread(os.path.join(folder, file), cv2.IMREAD_GRAYSCALE)
             if img is None:
                 continue
 
             img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
-            img = img / 255.0
-            flat = img.flatten()
-            writer.writerow([label.lower()] + flat.tolist())
+            pixels = (img / 255.0).flatten()
+            writer.writerow([label.lower()] + pixels.tolist())
 
-print(f" Done. CSV saved to: {csv_file}")
-!cp asl_alphabet_full.csv /content/drive/MyDrive/asl_alphabet_full.csv
-print(" CSV saved to your Google Drive.")
+print("CSV creation complete.")
+
+# Copy CSV to Google Drive
+!cp asl_alphabet.csv /content/drive/MyDrive/
+print("CSV saved to Google Drive.")
+
