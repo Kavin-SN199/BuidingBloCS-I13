@@ -63,7 +63,7 @@ Link to the slides->https://www.canva.com/design/DAGqOsR60r8/cNsrxVEgU-G7HVasuiy
 
 * Dataset by [grassknoted on Kaggle](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)
 * Help of A.I. tools for brainstorming
-* A bit of help of A.I. tools to understand on how to convert the dataset to a csv file
+* Undrstanding how to convert the dataset into a csv file from google
 
 
 
