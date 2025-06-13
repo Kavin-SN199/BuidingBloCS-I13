@@ -1,3 +1,5 @@
+# Run this code in Visual Studio Code for easier access to webcam and downloaded files
+
 import cv2
 import numpy as np
 import mediapipe as mp
