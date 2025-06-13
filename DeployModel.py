@@ -4,7 +4,7 @@ import mediapipe as mp
 import tensorflow as tf
 
 # Load the model from downloads
-model = tf.keras.models.load_model('/Users/sathia/Downloads/asl_cnn_model.h5')
+model = tf.keras.models.load_model('/Users/sathia/Downloads/asl_cnn_model.h5') # Change this to the file path of the trained model.
 
 # Map labels
 label_map = [
