@@ -42,11 +42,11 @@ A → 0, B → 1, ..., Z → 25, space → 26, nothing → 27
 ## Tips to improve recognition
  Tip                          Why It Matters                                        
 
- Good lighting           Helps Mediapipe detect the hand more accurately.      
-Solid background         Avoid noisy backgrounds for better hand segmentation. 
-Show one hand             The code is set to detect only 1 hand.                
-Hold the gesture still   Prediction is per frame; stability helps confidence.  
-Hand centered in camera   Ensures the whole hand is captured.         
+ Good lighting      ->     Helps to detect the hand more accurately.      
+Solid background     ->    Avoid noisy backgrounds for better hand segmentation. 
+Show one hand      ->       The code is set to detect only 1 hand.                
+Hold the gesture still  ->  Prediction is per frame; stability helps confidence.  
+Hand centered in camera  => Ensures the whole hand is captured.         
 
 
 
